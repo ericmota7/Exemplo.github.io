@@ -1,0 +1,19 @@
+<script> 
+
+<?php
+$email = $_GET['email'];
+$url = "https://login.aol.com/verify-email/v2/validate?email={$email}";
+
+$response = file_get_contents($url);
+
+if (strpos($response, "Sorry, we don't recognize this email.") !== false) {
+    echo "does not exist";
+} elseif (strpos($response, "password-form") !== false || strpos($response, "capture") !== false) {
+    echo "exists";
+} else {
+    echo "unknown";
+}
+?>
+
+
+<script/>
