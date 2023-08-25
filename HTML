@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Email da AOL</title>
+</head>
+<body>
+    <h1>Verificação de Email da AOL</h1>
+    <form action="exemplo.php" method="get">
+        <label for="email">Digite o email da AOL:</label>
+        <input type="text" id="email" name="email" required>
+        <button type="submit">Verificar</button>
+    </form>
+    <p>Resultado:</p>
+    <p id="resultado"></p>
+
+    <script>
+        const form = document.querySelector('form');
+        const resultado = document.getElementById('resultado');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = form.elements.email.value;
+            const response = await fetch(`exemplo.php?email=${encodeURIComponent(email)}`);
+            const result = await response.text();
+            resultado.textContent = `Resultado: ${result}`;
+        });
+    </script>
+</body>
+</html>
